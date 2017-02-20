@@ -11,7 +11,7 @@ import java.util.List;
 public class StaticDB {
     public static String applicationName_ = "groupsmsmanager";
     public static String spreadsheetId = "1XWNq-rqnLot0JZztxzcgCG-Cny133Sb_Lawyh4Z8wig";
-    public static int contactSheetId = 1668480672;
+    public static int contactSheetId = 0;
     public static List<MyGroup> myGroups_;
     public static List<MyContact> myContacts_;
     public static String groupMessage_ = "";
