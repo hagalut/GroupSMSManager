@@ -140,25 +140,35 @@ public class StringValidator {
         return false;
     }
 
-    private static boolean isAGroup(String groupName)
-    {
+    private static boolean isAGroup(String groupName) {
         if (myGroups_ != null) {
-            for (int i = 0; i < myGroups_.size(); i++) {
-                if (myGroups_.get(i).getGroupName().equalsIgnoreCase(groupName)) {
-                    return true;
+            if (myGroups_.size() > 0) {
+                for (int i = 0; i < myGroups_.size(); i++) {
+
+                    if (myGroups_.get(i) != null) {
+                        String grName = myGroups_.get(i).getGroupName();
+                        if (grName.length() > 0 && grName.equalsIgnoreCase(groupName)) {
+                            return true;
+                        }
+                    }
                 }
             }
+
         }
         return false;
     }
 
     public static MyGroup getCurrentGroup(String groupMessage_) {
         if (myGroups_ != null) {
-            for (int i = 0; i < myGroups_.size(); i++) {
-                if (groupMessage_.startsWith(myGroups_.get(i).getGroupName())) {
-                    MyGroup mGroup = myGroups_.get(i);
-                    String grName = mGroup.getGroupName();
-                    return mGroup;
+            if (myGroups_.size() > 0) {
+                for (int i = 0; i < myGroups_.size(); i++) {
+                    if (groupMessage_.startsWith(myGroups_.get(i).getGroupName())) {
+                        MyGroup mGroup = myGroups_.get(i);
+                        String grName = mGroup.getGroupName();
+                        if (mGroup != null) {
+                            return mGroup;
+                        }
+                    }
                 }
             }
         }
