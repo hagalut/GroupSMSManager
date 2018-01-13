@@ -23,7 +23,7 @@ public class StaticDB {
     public static boolean isPermissionToGoogleGranted = false;
     public static long updateUIRefreshRate_ = 3000; /// how often mobile synchronizes with online sheets - refresh rate
     public static long updateDataRefreshRate_ = 2000; /// how often mobile synchronizes with online sheets - refresh rate
-    public static String currSenderNumber_;
+    public static String currSenderNumber_= "004566554477";
     public static String contactsSheetRange = "Contact!A2:H";
     public static String pmdbSheetRange = "pmdb!A2:C99";
     public static String groupsSheetRange = "Groups!A1:A99";

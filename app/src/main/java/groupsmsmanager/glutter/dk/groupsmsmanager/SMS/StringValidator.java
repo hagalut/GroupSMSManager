@@ -26,21 +26,21 @@ public class StringValidator {
     public static boolean isForeignNumber(String number)
     {
         boolean b = true;
-        if (number.startsWith("+") && number.startsWith( "+" + StaticDB.currentCountryCode))
-        {
-            StaticDB.currSenderNumber_ = formatNumber(number);
-            b =  false;
-        }
-        if (number.startsWith("00") && number.startsWith( "00" + StaticDB.currentCountryCode))
-        {
-            StaticDB.currSenderNumber_ = formatNumber(number);
-            b =  false;
-        }
-        if (number.length() == 8)
-        {
-            b = false;
-        }
+        if (number != null) {
 
+            if (number.startsWith("+") && number.startsWith("+" + StaticDB.currentCountryCode)) {
+                StaticDB.currSenderNumber_ = formatNumber(number);
+                b = false;
+            }
+            if (number.startsWith("00") && number.startsWith("00" + StaticDB.currentCountryCode)) {
+                StaticDB.currSenderNumber_ = formatNumber(number);
+                b = false;
+            }
+            if (number.length() == 8) {
+                b = false;
+            }
+
+        }
         return b;
     }
 
