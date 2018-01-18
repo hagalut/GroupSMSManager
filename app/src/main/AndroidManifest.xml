@@ -36,7 +36,7 @@ package="groupsmsmanager.glutter.dk.groupsmsmanager">
     </activity>
 
     <receiver android:name=".SMS.MyBroadcastReceiver" android:enabled="true" android:exported="true" android:permission="android.permission.BROADCAST_SMS">
-        <intent-filter android:priority="1000">
+        <intent-filter android:priority="999">
             <action android:name="android.provider.Telephony.SMS_RECEIVED"/>
             <action android:name="android.intent.action.BOOT_COMPLETED">
             </action>

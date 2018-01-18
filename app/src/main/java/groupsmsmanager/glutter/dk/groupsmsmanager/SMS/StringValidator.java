@@ -18,6 +18,8 @@ import static groupsmsmanager.glutter.dk.groupsmsmanager.StaticDB.words;
 
 public class StringValidator {
 
+
+    private static int splitMessageWordLimit = 2;
     /**
      * Returns true if number is foreign. Updates currSenderNumber_ number in StaticDB
      * @param number
@@ -66,15 +68,16 @@ public class StringValidator {
     {
         words = null;
         if (!message.isEmpty()) {
-            String[] splitedMessage = message.split(" ");
-            if (splitedMessage.length > 1) {
-                if (splitedMessage[0].equalsIgnoreCase(signup)) {
-                    words = new ArrayList<>();
-                    for (int i = 0; i < splitedMessage.length; i++)
-                    {
-                        words.add(splitedMessage[i]);
+            if (message.length() > 1) {
+                String[] splitedMessage = message.split(" ", splitMessageWordLimit);
+                if (splitedMessage.length > 1) {
+                    if (splitedMessage[0].equalsIgnoreCase(signup)) {
+                        words = new ArrayList<>();
+                        for (int i = 0; i < splitedMessage.length; i++) {
+                            words.add(splitedMessage[i]);
+                        }
+                        return true;
                     }
-                    return true;
                 }
             }
         }
@@ -86,15 +89,16 @@ public class StringValidator {
     {
         words = null;
         if (!message.isEmpty()) {
-            String[] splitedMessage = message.split(" ");
-            if (splitedMessage.length > 1) {
-                if (splitedMessage[0].equalsIgnoreCase(resign)) {
-                    words = new ArrayList<>();
-                    for (int i = 0; i < splitedMessage.length; i++)
-                    {
-                        words.add(splitedMessage[i]);
+            if (message.length() > 1) {
+                String[] splitedMessage = message.split(" ", splitMessageWordLimit);
+                if (splitedMessage.length > 1) {
+                    if (splitedMessage[0].equalsIgnoreCase(resign)) {
+                        words = new ArrayList<>();
+                        for (int i = 0; i < splitedMessage.length; i++) {
+                            words.add(splitedMessage[i]);
+                        }
+                        return true;
                     }
-                    return true;
                 }
             }
         }
@@ -105,17 +109,17 @@ public class StringValidator {
     {
         words = null;
         if (!message.isEmpty()) {
-            String[] splitedMessage = message.split(" ");
-            if (splitedMessage.length > 1) {
-                words = new ArrayList<>();
-                for (int i = 0; i < splitedMessage.length; i++)
-                    words.add(splitedMessage[i]);
-                if (isAGroup(words.get(0))) {
-                    return true;
-                }
-                else
-                {
-                    return false;
+            if (message.length() > 1) {
+                String[] splitedMessage = message.split(" ", splitMessageWordLimit);
+                if (splitedMessage.length > 1) {
+                    words = new ArrayList<>();
+                    for (int i = 0; i < splitedMessage.length; i++)
+                        words.add(splitedMessage[i]);
+                    if (isAGroup(words.get(0))) {
+                        return true;
+                    } else {
+                        return false;
+                    }
                 }
             }
         }
@@ -160,13 +164,18 @@ public class StringValidator {
 
     public static MyGroup getCurrentGroup(String groupMessage_) {
         if (myGroups_ != null) {
-            if (myGroups_.size() > 0) {
-                for (int i = 0; i < myGroups_.size(); i++) {
-                    if (groupMessage_.startsWith(myGroups_.get(i).getGroupName())) {
-                        MyGroup mGroup = myGroups_.get(i);
-                        String grName = mGroup.getGroupName();
-                        if (mGroup != null) {
-                            return mGroup;
+            if (groupMessage_.length() > 1) {
+                if (myGroups_.size() > 0) {
+                    for (int i = 0; i < myGroups_.size(); i++) {
+                        String splitMessage[] = groupMessage_.split(" ", splitMessageWordLimit);
+                        if (splitMessage.length > 0) {
+                            if (splitMessage[0].equalsIgnoreCase(myGroups_.get(i).getGroupName())) {
+                                MyGroup mGroup = myGroups_.get(i);
+                                String grName = mGroup.getGroupName();
+                                if (mGroup != null) {
+                                    return mGroup;
+                                }
+                            }
                         }
                     }
                 }

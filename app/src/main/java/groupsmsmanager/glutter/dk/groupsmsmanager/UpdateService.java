@@ -10,6 +10,7 @@ import android.util.Log;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 import groupsmsmanager.glutter.dk.groupsmsmanager.API.SheetsHandler;
@@ -85,7 +86,7 @@ public class UpdateService extends IntentService implements Runnable{
             // -- Update Groups
             //    1 - Create groups
             try {
-                myGroups_ = SheetsHandler.getAllGroups(spreadsheetId, groupsSheetRange);
+                myGroups_ = new ArrayList<>(SheetsHandler.getAllGroups(spreadsheetId, groupsSheetRange));
             } catch (IOException e) {
                 e.printStackTrace();
             }
