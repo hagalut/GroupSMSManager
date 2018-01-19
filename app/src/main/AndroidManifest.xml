@@ -18,8 +18,6 @@ package="groupsmsmanager.glutter.dk.groupsmsmanager">
 <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
-<action android:name="android.provider.Telephony.SMS_DELIVER"/>
-<action android:name="android.provider.Telephony.SMS_RECEIVED"/>
 
 <application
     android:allowBackup="true"
@@ -38,8 +36,8 @@ package="groupsmsmanager.glutter.dk.groupsmsmanager">
     <receiver android:name=".SMS.MyBroadcastReceiver" android:enabled="true" android:exported="true" android:permission="android.permission.BROADCAST_SMS">
         <intent-filter android:priority="999">
             <action android:name="android.provider.Telephony.SMS_RECEIVED"/>
-            <action android:name="android.intent.action.BOOT_COMPLETED">
-            </action>
+            <action android:name="android.provider.Telephony.SMS_DELIVER"/>
+            <action android:name="android.intent.action.BOOT_COMPLETED"/>
         </intent-filter>
     </receiver>
 

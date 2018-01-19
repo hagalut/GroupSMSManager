@@ -19,7 +19,6 @@ import static groupsmsmanager.glutter.dk.groupsmsmanager.StaticDB.words;
 public class StringValidator {
 
 
-    private static int splitMessageWordLimit = 2;
     /**
      * Returns true if number is foreign. Updates currSenderNumber_ number in StaticDB
      * @param number
@@ -69,7 +68,7 @@ public class StringValidator {
         words = null;
         if (!message.isEmpty()) {
             if (message.length() > 1) {
-                String[] splitedMessage = message.split(" ", splitMessageWordLimit);
+                String[] splitedMessage = message.split(" ");
                 if (splitedMessage.length > 1) {
                     if (splitedMessage[0].equalsIgnoreCase(signup)) {
                         words = new ArrayList<>();
@@ -90,7 +89,7 @@ public class StringValidator {
         words = null;
         if (!message.isEmpty()) {
             if (message.length() > 1) {
-                String[] splitedMessage = message.split(" ", splitMessageWordLimit);
+                String[] splitedMessage = message.split(" ");
                 if (splitedMessage.length > 1) {
                     if (splitedMessage[0].equalsIgnoreCase(resign)) {
                         words = new ArrayList<>();
@@ -110,7 +109,7 @@ public class StringValidator {
         words = null;
         if (!message.isEmpty()) {
             if (message.length() > 1) {
-                String[] splitedMessage = message.split(" ", splitMessageWordLimit);
+                String[] splitedMessage = message.split(" ");
                 if (splitedMessage.length > 1) {
                     words = new ArrayList<>();
                     for (int i = 0; i < splitedMessage.length; i++)
@@ -167,7 +166,7 @@ public class StringValidator {
             if (groupMessage_.length() > 1) {
                 if (myGroups_.size() > 0) {
                     for (int i = 0; i < myGroups_.size(); i++) {
-                        String splitMessage[] = groupMessage_.split(" ", splitMessageWordLimit);
+                        String splitMessage[] = groupMessage_.split(" ", 2);
                         if (splitMessage.length > 0) {
                             if (splitMessage[0].equalsIgnoreCase(myGroups_.get(i).getGroupName())) {
                                 MyGroup mGroup = myGroups_.get(i);
